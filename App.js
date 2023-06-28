@@ -7,5 +7,7 @@ import AuthNavigation from "./AuthNavigation";
 
 export default function App() {
   return <AuthNavigation/>
+  // return <HomeScreen/>
+  // return <NewPostScreen/>
 
 }

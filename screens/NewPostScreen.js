@@ -1,13 +1,13 @@
-import { View, Text, SafeAreaView } from 'react-native'
-import React from 'react'
-import AddNewPost from '../components/newPost/AddNewPost'
+import { View, Text, SafeAreaView } from "react-native";
+import React from "react";
+import AddNewPost from "../components/newPost/AddNewPost";
 
-const NewPostScreen = ({navigation}) => {
+const NewPostScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={{flex:1}}>
-    <AddNewPost navigation={navigation} />
-</SafeAreaView>
-  )
-}
+    <SafeAreaView style={{ flex: 1 }}>
+      <AddNewPost navigation={navigation} />
+    </SafeAreaView>
+  );
+};
 
-export default NewPostScreen
+export default NewPostScreen;

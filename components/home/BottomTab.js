@@ -48,7 +48,7 @@ const BottomTab = ({ icons }) => {
 
   const Icon = ({ icon }) => {
     return (
-      <TouchableOpacity onPress={() => setActiveTabs(icon.name)}>
+      <TouchableOpacity onPress={() => setActiveTabs(icon.name)}> 
         <Text>{activeTabs === icon.name ? icon.active : icon.inactive}</Text>
       </TouchableOpacity>
     );
@@ -57,7 +57,7 @@ const BottomTab = ({ icons }) => {
   return (
     <View style={styles.wrapper}>
       <Divider width={1} orientation="vertical" />
-
+      
       <View style={styles.container}>
         {icons.map((icon, index) => (
           <Icon key={index} icon={icon} />

@@ -6,7 +6,6 @@ import { Divider } from "@rneui/base";
 import validUrl from "valid-url";
 import { firebase, db } from "../.././firebaseTest";
 
-
 const UploadPostSchema = Yup.object().shape({
   imageUrl: Yup.string().url().required("A URL is required"),
   caption: Yup.string().max(
@@ -28,44 +27,35 @@ const FormikPostUploader = ({ navigation }) => {
       .collection("users")
       .where("owner_uid", "==", user.uid)
       .limit(1)
-      .onSnapshot(querysnapshot =>
-        querysnapshot.docs.map(doc => {
+      .onSnapshot((snapshot) =>
+        snapshot.docs.map((doc) => {
           setCurrentLoggedUser({
             username: doc.data().username,
             profilePicture: doc.data().profile_picture,
           });
-          
         })
-        
       );
 
-      return unsubscribe;
+    return unsubscribe;
   };
-  
+
   console.log(currentloggedUser);
 
   useEffect(() => {
     getUserName();
   }, []);
   const uploadPostToFire = (imageUrl, caption) => {
-      const unsubscribe = db
-        .collection("users")
-        .doc(firebase.auth().currentUser.email)
-        .collection("posts")
-        .add({
-          imageUrl: imageUrl,
-          // user: currentloggedUser.username,
-          // profile_picture: currentloggedUser.profilePicture,
-          owner_uid: firebase.auth().currentUser.uid,
-          caption: caption,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          likes: 0,
-          likes_by_users: [],
-          comments: [],
-        })
-        .then(() => navigation.goBack());
-      return unsubscribe;
-   
+    const unsubscribe = db
+      .collection("users")
+      .doc(firebase.auth().currentUser.email).collection("posts").add({
+        imageUrl: imageUrl,
+        // user: currentloggedUser.username,
+        // profile_picture: currentloggedUser.profilePicture,
+        owner_uid: firebase.auth().currentUser.uid,        caption: caption,        createdAt: firebase.firestore.FieldValue.serverTimestamp(),        likes: 0,        likes_by_users: [],
+        comments: [],
+      })
+      .then(() => navigation.goBack());
+    return unsubscribe;
   };
 
   return (
